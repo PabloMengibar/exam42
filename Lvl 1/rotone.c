@@ -12,36 +12,35 @@ letters by the next one in alphabetical order.
 The output will be followed by a \n.
 
 If the number of arguments is not 1, the program displays \n.
+
+Example:
+
+$>./rotone "abc"
+bcd
+$>./rotone "Les stagiaires du staff ne sentent pas toujours tres bon." | cat -e
+Mft tubhjbjsft ev tubgg of tfoufou qbt upvkpvst usft cpo.$
+$>./rotone "AkjhZ zLKIJz , 23y " | cat -e
+BlkiA aMLJKa , 23z $
+$>./rotone | cat -e
+$
+$>
+$>./rotone "" | cat -e
+$
+$>
 */
+ #include <unistd.h>
 
-#include <unistd.h>
-
-// Función para escribir un solo carácter en la salida estándar
-void ft_putchar(char c)
-{
-    write(1, &c, 1);
-}
-// Función para aplicar el cifrado ROT1 a una cadena de caracteres
-void rotone (char *str)
-{
-    while (*str)
-    {
-		// Si el carácter está entre 'a' y 'y' o entre 'A' y 'Y'
-        if ((*str >= 'a' && *str < 'z') || (*str >= 'A' && *str < 'Z'))
-            ft_putchar(*str + 1); // Imprime el siguiente carácter en la secuencia (ROT1)
-		// Si el carácter es 'z' o 'Z'
-        else if (*str == 'z' || *str == 'Z')
-            ft_putchar(*str - 25); // Para 'z' o 'Z', pasa a 'a' o 'A' (es el caso especial)
-        else
-            ft_putchar(*str); // Si no es una letra (espacios, signos, etc.), lo imprime tal cual
-        str++; // Avanza al siguiente carácter en la cadena
-    }
-}
-
-int main(int argc, char **argv)
-{
-    if (argc == 2)
-        rotone(argv[1]);
-    ft_putchar('\n');
-    return (0);
+int main(int ac, char **ag){
+	int i = 0;
+	if(ac == 2){
+		while(ag[1][i]){
+			if((ag[1][i] >= 'a' && ag[1][i] < 'z') || (ag[1][i] >= 'A' && ag[1][i] < 'Z'))
+				ag[1][i]+= 1;
+			else if (ag[1][i] == 'Z' || ag[1][i] == 'z')
+				ag[1][i] -= 25;
+			write(1, &ag[1][i], 1);
+			i++;
+		}
+	}
+	write(1, "\n", 1);
 }

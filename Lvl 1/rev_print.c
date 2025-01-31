@@ -8,33 +8,28 @@ Write a program that takes a string, and displays the string in reverse
 followed by a newline.
 
 If the number of parameters is not 1, the program displays a newline.
+
+Examples:
+
+$> ./rev_print "zaz" | cat -e
+zaz$
+$> ./rev_print "dub0 a POIL" | cat -e
+LIOP a 0bud$
+$> ./rev_print | cat -e
+$
 */
+
 #include <unistd.h>
 
-// Función para imprimir una cadena en orden inverso
-void rev_print(char *s){
+int main(int ac, char **av){
 	int i = 0;
-	// Primer bucle: calcular la longitud de la cadena
-	while(s[i]) // Mientras no lleguemos al carácter nulo ('\0'), avanzamos
-		i++;
-	i--; // Retrocedemos una posición para apuntar al último carácter de la cadena
-	while(i >= 0){
-		write(1, &s[i], 1);
-		i--;
+	if(ac == 2){
+		while(av[1][i])
+			i++;
+		while(i--)
+			write(1, &av[1][i], 1);
 	}
-}
+	write(1, "\n", 1);
+	return 0;
 
-int main (int argc, char **argv)
-{
-    if (argc == 2)
-        rev_print(argv[1]);
-    write(1, "\n", 1);
-    return (0);    
 }
-
-//gcc -Wall -Werror -Wextra rev_print.c -o rev_print
-//./rev_print "Hello, World!"
-/*
-El operador & se utiliza para obtener la dirección de memoria de una variable. 
-Esto es útil cuando queremos trabajar con punteros o pasar la dirección de una variable a una función que espera un puntero.
-*/

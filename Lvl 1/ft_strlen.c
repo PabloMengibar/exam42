@@ -1,7 +1,7 @@
 /*
 Assignment name  : ft_strlen
 Expected files   : ft_strlen.c
-Allowed functions: 
+Allowed functions:
 --------------------------------------------------------------------------------
 
 Write a function that returns the length of a string.
@@ -10,13 +10,12 @@ Your function must be declared as follows:
 
 int	ft_strlen(char *str);
 */
-#include <unistd.h>
 
-int ft_strlen(char *s){
-int i = 0;
-while(s[i])
-	i++;
-return (i);
+int	ft_strlen(char *str){
+	int i = 0;
+
+	while(str[i]){
+		i++;
+	}
+	return i;
 }
-
-//Tampoco voy a explicar algo aqui

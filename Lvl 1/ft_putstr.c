@@ -13,14 +13,18 @@ Your function must be declared as follows:
 
 void	ft_putstr(char *str);
 */
+
 #include <unistd.h>
 
-void ft_putstr(char *str)
-{
-    while (*str)
-    {
-        write(1, str, 1);
-        str++;
-    }
+void ft_putstr(char *str){
+	unsigned int i = 0;
+	while(str[i]){
+		write(1, &str[i], 1);
+		i++;
+	}
 }
-//No tengo nada que explicar aqui xd
+
+int main(int av, char **ag){
+	ft_putstr(ag[1]);
+	return 0;
+}
